@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.veryworks.iyeongjun.seoulair"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.tsengvn:Typekit:1.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'       // 글라이드
+    compile 'jp.wasabeef:glide-transformations:1.0.6@aar' //글라이드 트랜스폼
+    compile 'com.squareup:seismic:1.0.2'
+    compile 'com.squareup.retrofit2:retrofit:2.3.+'       //레트로핏
+    compile 'com.squareup.retrofit2:converter-gson:2.3.+'       //Gson 컨버터
+    compile 'com.google.code.gson:gson:2.+'               //Gson
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile project(':airquality')
+}
