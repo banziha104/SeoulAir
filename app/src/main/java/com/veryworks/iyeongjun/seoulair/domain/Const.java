@@ -7,6 +7,10 @@ package com.veryworks.iyeongjun.seoulair.domain;
 public class Const {
     public static class Auth{
         public static final String SEOUL_API_KEY = "6d59646256646c6431303073497a5353";
-
+    }
+    public static class Status{
+        public static final String SCREEN_ON = "Screen on";
+        public static final String SCREEN_OFF = "Screen off";
+        public static final String BOOT_COMPLETE = "Boot complete";
     }
 }
