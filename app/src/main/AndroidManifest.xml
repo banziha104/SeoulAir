@@ -22,7 +22,8 @@
         <receiver
             android:name=".DisplayReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+        </receiver>
 
         <service
             android:name=".ShakeDetectService"
