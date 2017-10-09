@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.airQuality)
     AirQualityButtonTypeA airQuality;
     DisplayReceiver displayReceiver;
-
+    boolean isRan = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         airQuality.setButtonImage(R.drawable.img00);
-
+        startShakeDetect();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, AirQualityDetailTypeA.class);
-        intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
-        startActivity(intent);
+        if (isRan == false){
+            Toast.makeText(this, "Resume", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, AirQualityDetailTypeA.class);
+            intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
+            isRan = true;
+            startActivity(intent);
+        }
     }
 
     private void startShakeDetect(){

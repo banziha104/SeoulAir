@@ -6,4 +6,5 @@ package com.veryworks.iyeongjun.seoulair;
 
 public class StaticStatus {
     public static String ScreenStatus;
+    public static boolean isServiceRan = false;
 }
