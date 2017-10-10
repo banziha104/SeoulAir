@@ -7,6 +7,8 @@ package com.veryworks.iyeongjun.seoulair.domain;
 public class Const {
     public static class Auth{
         public static final String SEOUL_API_KEY = "6d59646256646c6431303073497a5353";
+        public static final String NAVER_NEWS_API_ID = "qePWE0uIuTmsPorFyiVg";
+        public static final String NAVER_NEWS_API_PS = "d7ZB5f5DhK";
     }
     public static class Status{
         public static final String SCREEN_ON = "Screen on";

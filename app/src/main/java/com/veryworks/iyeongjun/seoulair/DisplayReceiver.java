@@ -34,6 +34,7 @@ public class DisplayReceiver extends BroadcastReceiver {
                 break;
             case Intent.ACTION_BOOT_COMPLETED:
                 setStatus(Const.Status.BOOT_COMPLETE);
+                if(isServiceRan == false) context.startService(shakeServiceIntent);
                 break;
         }
     }
