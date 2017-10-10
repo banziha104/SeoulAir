@@ -73,7 +73,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
 
     @Override
     public void hearShake() {
-        startBannerActivity();
+        startMainActivity();
     }
 
     private void startShakeListener(){
@@ -87,8 +87,8 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
         Log.d(TAG,"offShakeDetector");
     }
 
-    private void startBannerActivity(){
-        Intent intent = new Intent(this,BannerActivity.class);
+    private void startMainActivity(){
+        Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
