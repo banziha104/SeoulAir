@@ -3,7 +3,10 @@ package com.veryworks.iyeongjun.seoulair;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.veryworks.iyeongjun.seoulair.domain.Const;
+import com.veryworks.iyeongjun.seoulair.domain.Data;
+import com.veryworks.iyeongjun.seoulair.domain.NewsData;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,11 +25,9 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
         String clientSecret = Const.Auth.NAVER_NEWS_API_PS;//애플리케이션 클라이언트 시크릿값";
         try {
             String text = URLEncoder.encode("naver", "UTF-8");
-            String display = 3+"";
+            String display = 1+"";
             String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+ text
-                    +"&display="+display
-                    +"&start=1"
-                    +"&sort=sim";
+                    +"&display="+display;
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
@@ -47,12 +48,19 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
-            Log.d("result","Compelete");
+            JSONtoPojoConvert(response.toString());
             Log.d("result",response+"");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+    private void JSONtoPojoConvert(String str){
+        NewsData.getInstance().setData(new Gson().fromJson(str,Data.class));
+        Log.d("result",NewsData.getInstance().getData().getItems().toString());
+    }
+
+    interface SetView{
+        void setView();
     }
 }
