@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     boolean isRan = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
