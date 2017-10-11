@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.seoulair;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -19,6 +20,7 @@ import java.net.URLEncoder;
  */
 
 public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
+    private SetView context;
     @Override
     protected Void doInBackground(Void... voids) {
         String clientId = Const.Auth.NAVER_NEWS_API_ID;//애플리케이션 클라이언트 아이디값";
@@ -50,6 +52,7 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
             br.close();
             JSONtoPojoConvert(response.toString());
             Log.d("result",response+"");
+            context.setView();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,6 +61,10 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
     private void JSONtoPojoConvert(String str){
         NewsData.getInstance().setData(new Gson().fromJson(str,Data.class));
         Log.d("result",NewsData.getInstance().getData().getItems().toString());
+    }
+
+    public void setContext(Context context) {
+        this.context = (SetView) context;
     }
 
     interface SetView{

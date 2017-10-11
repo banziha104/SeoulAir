@@ -88,7 +88,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     }
 
     private void startMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,NewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

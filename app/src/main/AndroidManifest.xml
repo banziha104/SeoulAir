@@ -36,7 +36,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".NewsActivity"></activity>
+        <activity android:name=".NewsActivity" />
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>

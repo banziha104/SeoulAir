@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         airQuality.setButtonImage(R.drawable.img00);
-        new NaverNewsParser().execute();
 
         startShakeDetect();
     }
