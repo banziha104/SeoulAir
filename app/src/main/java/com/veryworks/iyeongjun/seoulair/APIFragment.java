@@ -11,6 +11,7 @@ import com.veryworks.iyeongjun.seoulair.domain.Const;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import kr.go.seoul.airquality.AirQualityButtonTypeA;
 import kr.go.seoul.airquality.AirQualityDetailTypeA;
@@ -18,15 +19,13 @@ import kr.go.seoul.airquality.AirQualityDetailTypeA;
 
 public class APIFragment extends Fragment {
 
-    @BindView(R.id.airQuality)
-    AirQualityButtonTypeA airQuality;
     Unbinder unbinder;
-    Context context;
+    GoAirQuiltyAPI context;
     public APIFragment() {
         // Required empty public constructor
     }
     public void setContext(Context context){
-        this.context = context;
+        this.context = (GoAirQuiltyAPI) context;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +35,10 @@ public class APIFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
+    @OnClick(R.id.APIbutton)
+    public void APIButtonClicked(){
+        context.goAirQuilty();
+    }
 
     @Override
     public void onDestroyView() {
@@ -43,7 +46,7 @@ public class APIFragment extends Fragment {
         unbinder.unbind();
     }
 
-    interface goAirQuiltyAPI{
+    interface GoAirQuiltyAPI{
         void goAirQuilty();
     }
 }

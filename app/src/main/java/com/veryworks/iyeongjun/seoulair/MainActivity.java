@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import kr.go.seoul.airquality.AirQualityButtonTypeA;
 import kr.go.seoul.airquality.AirQualityDetailTypeA;
 
-public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView {
+public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView, APIFragment.GoAirQuiltyAPI {
 
     @BindView(R.id.airQuality) AirQualityButtonTypeA airQuality;
     @BindView(R.id.tabLayout) TabLayout tab;
@@ -46,12 +46,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     @Override
     protected void onResume() {
         super.onResume();
-        if (isAirRan == false) {
-            Intent intent = new Intent(this, AirQualityDetailTypeA.class);
-            intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
-            isAirRan = true;
-            startActivity(intent);
-        }
+        if(isAirRan == false) goAirQuilty();
     }
 
     private void startShakeDetect() {
@@ -94,5 +89,15 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         // 7. 탭이 변경되었때 페이저를 변경해주는 리스너
         tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
         Log.d("MAINACITIVTY","pager set");
+    }
+
+    @Override
+    public void goAirQuilty() {
+
+        Intent intent = new Intent(this, AirQualityDetailTypeA.class);
+        intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
+        isAirRan = true;
+        startActivity(intent);
+
     }
 }
