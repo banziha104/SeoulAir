@@ -54,6 +54,7 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
             Log.d("result",response+"");
             context.setView();
         } catch (Exception e) {
+            Log.d("elog",e.toString());
             e.printStackTrace();
         }
         return null;

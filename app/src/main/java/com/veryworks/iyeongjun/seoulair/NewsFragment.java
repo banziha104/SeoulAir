@@ -9,15 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class NewsFragment extends Fragment {
-
+    Context context;
     public NewsFragment() {
         // Required empty public constructor
+
+    }
+    public void setContext(Context context){
+        this.context = context;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_word, container, false);
+        return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
 }

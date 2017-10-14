@@ -3,16 +3,17 @@ package com.veryworks.iyeongjun.seoulair;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.List;
 
 /**
  * Created by iyeongjun on 2017. 10. 14..
  */
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class MyPagerAdapter extends FragmentStatePagerAdapter {
     List<Fragment> datas;
 
-    public PagerAdapter(FragmentManager fm, List<Fragment> datas) {
+    public MyPagerAdapter(FragmentManager fm,List<Fragment> datas) {
         super(fm);
         this.datas = datas;
     }
