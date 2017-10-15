@@ -45,4 +45,5 @@ dependencies {
     compile 'com.github.igalata:Bubble-Picker:v0.2.4'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.android.support:cardview-v7:26.+'
 }

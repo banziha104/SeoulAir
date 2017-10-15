@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Items[] items;
-    int MaxPostion = 20;
+    int MaxPostion = 40;
     public RecyclerAdapter(Data data) {
         items = data.getItems();
     }
@@ -40,11 +40,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return MaxPostion;
+        return items.length;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.itemTxtTitle) TextView itemTxtTitle;
+        @BindView(R.id.txtTitle) TextView itemTxtTitle;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
