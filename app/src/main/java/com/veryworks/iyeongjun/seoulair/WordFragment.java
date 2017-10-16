@@ -1,6 +1,7 @@
 package com.veryworks.iyeongjun.seoulair;
 
 
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,7 @@ import butterknife.Unbinder;
  * A simple {@link Fragment} subclass.
  */
 public class WordFragment extends Fragment {
-
+    TypedArray colors;
 
     @BindView(R.id.bubble)
     BubblePicker bubblePicker;
@@ -42,6 +43,7 @@ public class WordFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_word, container, false);
         unbinder = ButterKnife.bind(this, view);
+        colors = getResources().obtainTypedArray(R.array.colors);
         setBubble();
         return view;
     }
@@ -64,7 +66,8 @@ public class WordFragment extends Fragment {
             public PickerItem getItem(int position) {
                 PickerItem item = new PickerItem();
                 item.setTitle(position+"");
-                item.setGradient(new BubbleGradient(Color.RED,Color.RED, BubbleGradient.VERTICAL));
+                item.setGradient(new BubbleGradient(colors.getColor((position * 2) % 8, 0),
+                        colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
                 item.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
                 return item;
             }

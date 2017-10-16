@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.veryworks.iyeongjun.seoulair.domain.Const;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     NaverNewsParser naverNewsParser;
 
     public static boolean isAirRan = false;
-
+    public static boolean isShaked = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     protected void onResume() {
         super.onResume();
         if(isAirRan == false) goAirQuilty();
+        else if(isShaked == true){
+            goAirQuilty();
+            isShaked = false;
+        }
     }
 
     private void startShakeDetect() {
@@ -88,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
         // 7. 탭이 변경되었때 페이저를 변경해주는 리스너
         tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
-        Log.d("MAINACITIVTY","pager set");
     }
 
     @Override

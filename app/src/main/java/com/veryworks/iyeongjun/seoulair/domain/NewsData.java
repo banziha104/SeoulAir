@@ -7,7 +7,6 @@ package com.veryworks.iyeongjun.seoulair.domain;
 public class NewsData {
     private static NewsData instance;
     private Data data;
-    private boolean isGetData = false;
     private NewsData(){
 
     }
@@ -25,10 +24,5 @@ public class NewsData {
 
     public void setData(Data data) {
         this.data = data;
-        isGetData = true;
-    }
-
-    public boolean isGetData(){
-        return isGetData;
     }
 }

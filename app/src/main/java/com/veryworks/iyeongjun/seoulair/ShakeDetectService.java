@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.squareup.seismic.ShakeDetector;
 
+import static com.veryworks.iyeongjun.seoulair.MainActivity.isShaked;
 import static com.veryworks.iyeongjun.seoulair.StaticStatus.isServiceRan;
 
 public class ShakeDetectService extends Service implements DisplayReceiver.ShakeController, ShakeDetector.Listener{
@@ -88,8 +89,10 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     }
 
     private void startMainActivity(){
+        Log.d(TAG,"Shake Detected");
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        isShaked = true;
         startActivity(intent);
     }
 }
