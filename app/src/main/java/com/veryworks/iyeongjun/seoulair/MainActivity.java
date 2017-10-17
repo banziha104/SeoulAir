@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.seoulair;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,6 +9,8 @@ import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.tsengvn.typekit.Typekit;
+import com.tsengvn.typekit.TypekitContextWrapper;
 import com.veryworks.iyeongjun.seoulair.domain.Const;
 
 
@@ -37,9 +40,15 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         ButterKnife.bind(this);
         setPager();
         naverNewsParser();
+        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         airQuality.setButtonImage(R.drawable.img00);
         startShakeDetect();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     @Override

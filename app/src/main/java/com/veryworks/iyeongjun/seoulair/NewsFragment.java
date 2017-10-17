@@ -60,7 +60,7 @@ public class NewsFragment extends Fragment {
             }else{
                 Log.d("DATA","getData");
                 flag = false;
-                RecyclerAdapter adapter = new RecyclerAdapter(NewsData.getInstance().getData());
+                RecyclerAdapter adapter = new RecyclerAdapter(NewsData.getInstance().getData(),getActivity());
                 recycler.setAdapter(adapter);
                 recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
             }
