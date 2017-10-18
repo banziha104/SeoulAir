@@ -32,6 +32,18 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     public static boolean isAirRan = false;
     public static boolean isShaked = false;
+
+    private int[] tabIcions = {
+            R.drawable.term_icon,
+            R.drawable.news_icon,
+            R.drawable.weather_icon
+    };
+
+    private int[] tabClickIcons = {
+            R.drawable.term_icon_clicked,
+            R.drawable.news_icon_clicked,
+            R.drawable.weather_icon_clicked
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         naverNewsParser();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
-        airQuality.setButtonImage(R.drawable.img00);
         startShakeDetect();
     }
 
@@ -78,9 +89,10 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     }
     public void setPager(){
 
-        tab.addTab(tab.newTab().setText("One"));
-        tab.addTab(tab.newTab().setText("Two"));
-        tab.addTab(tab.newTab().setText("Three"));
+        for(int i = 0 ; i < tabIcions.length ; i++){
+            tab.getTabAt(i).setIcon(tabIcions[i]);
+        }
+
         List<Fragment> datas = new ArrayList<>();
 
         WordFragment wordfragment = new WordFragment();
@@ -100,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
         // 7. 탭이 변경되었때 페이저를 변경해주는 리스너
         tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
+
     }
 
     @Override
