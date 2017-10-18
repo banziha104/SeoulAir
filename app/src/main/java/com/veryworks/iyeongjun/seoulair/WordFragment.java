@@ -2,13 +2,13 @@ package com.veryworks.iyeongjun.seoulair;
 
 
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
@@ -32,6 +32,8 @@ public class WordFragment extends Fragment {
     @BindView(R.id.bubble)
     BubblePicker bubblePicker;
     Unbinder unbinder;
+    @BindView(R.id.WordImgView)
+    ImageView wordImgView;
 
     public WordFragment() {
         // Required empty public constructor
@@ -44,6 +46,7 @@ public class WordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_word, container, false);
         unbinder = ButterKnife.bind(this, view);
         colors = getResources().obtainTypedArray(R.array.colors);
+        bubblePicker.setBackground(R.drawable.word_dis);
         setBubble();
         return view;
     }
@@ -53,7 +56,20 @@ public class WordFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-    private void setBubble(){
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bubblePicker.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        bubblePicker.onPause();
+    }
+
+    private void setBubble() {
         bubblePicker.setBubbleSize(5);
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
@@ -65,7 +81,7 @@ public class WordFragment extends Fragment {
             @Override
             public PickerItem getItem(int position) {
                 PickerItem item = new PickerItem();
-                item.setTitle(position+"");
+                item.setTitle(position + "");
                 item.setGradient(new BubbleGradient(colors.getColor((position * 2) % 8, 0),
                         colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
                 item.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));

@@ -120,7 +120,22 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
         // 7. 탭이 변경되었때 페이저를 변경해주는 리스너
         tab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(pager));
+        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tabs) {
+                tabs.setIcon(tabClickIcons[tabs.getPosition()]);
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tabs) {
+                tabs.setIcon(tabIcions[tabs.getPosition()]);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
