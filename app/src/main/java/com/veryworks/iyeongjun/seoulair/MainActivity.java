@@ -89,9 +89,17 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     }
     public void setPager(){
 
-        for(int i = 0 ; i < tabIcions.length ; i++){
-            tab.getTabAt(i).setIcon(tabIcions[i]);
+        tab.addTab(tab.newTab().setIcon(tabIcions[0]));
+        tab.addTab(tab.newTab().setIcon(tabIcions[1]));
+        tab.addTab(tab.newTab().setIcon(tabIcions[2]));
+        for(int i = 0; i<tabIcions.length; i++){
+            TabLayout.Tab tabs = tab.getTabAt(i);
+            if (tabs != null) tabs.setCustomView(R.layout.icon_size);
         }
+//        tab.getTabAt(0).setIcon(R.drawable.term_icon);
+//        tab.getTabAt(1).setIcon(R.drawable.news_icon);
+//        tab.getTabAt(2).setIcon(R.drawable.weather_icon);
+
 
         List<Fragment> datas = new ArrayList<>();
 

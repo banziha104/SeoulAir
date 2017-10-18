@@ -22,9 +22,11 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="#7DCEE5"
+        android:isScrollContainer="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></android.support.design.widget.TabLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/bg_good"></android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
