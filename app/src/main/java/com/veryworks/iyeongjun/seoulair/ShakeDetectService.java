@@ -19,6 +19,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     DisplayReceiver displayReceiver;
     SensorManager sensorManager;
     ShakeDetector sd;
+    boolean isShakedDetect = false;
     private final String TAG = "Service";
     public ShakeDetectService() {
 
@@ -89,10 +90,21 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     }
 
     private void startMainActivity(){
-        Log.d(TAG,"Shake Detected");
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        isShaked = true;
-        startActivity(intent);
+        if(isShakedDetect = false) {
+            Log.d(TAG, "Shake Detected");
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            isShaked = true;
+            isShakedDetect = true;
+            startActivity(intent);
+        }else{
+            try {
+                Thread.sleep(1000);
+                isShakedDetect = false;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
