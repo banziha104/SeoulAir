@@ -32,8 +32,6 @@ public class WordFragment extends Fragment {
     @BindView(R.id.bubble)
     BubblePicker bubblePicker;
     Unbinder unbinder;
-    @BindView(R.id.WordImgView)
-    ImageView wordImgView;
 
     public WordFragment() {
         // Required empty public constructor
@@ -46,7 +44,6 @@ public class WordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_word, container, false);
         unbinder = ButterKnife.bind(this, view);
         colors = getResources().obtainTypedArray(R.array.colors);
-        bubblePicker.setBackground(R.drawable.word_dis);
         setBubble();
         return view;
     }
