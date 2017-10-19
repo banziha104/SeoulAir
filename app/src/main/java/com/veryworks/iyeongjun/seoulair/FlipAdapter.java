@@ -19,11 +19,12 @@ import butterknife.ButterKnife;
  */
 
 public class FlipAdapter extends BaseAdapter {
-    TermData data = new TermData();
+    TermData data;
     Context context;
 
-    public FlipAdapter(Context context) {
+    public FlipAdapter(Context context, TermData data) {
         this.context = context;
+        this.data = data;
     }
 
     @Override
@@ -51,14 +52,14 @@ public class FlipAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.page_first, parent, false);
             firstHolder = new FirstHolder(convertView);
             firstHolder.firstTxtTitle.setText(data.getTitle());
-            firstHolder.firstTxtContents.setText(data.getContents());
+            firstHolder.firstTxtContents.setText(data.getFirstContents());
             Glide.with(context)
                     .load(data.getImgURL())
                     .into(firstHolder.imageView);
         } else {
             convertView = inflater.inflate(R.layout.page, parent, false);
             secondHolder = new SecondHolder(convertView);
-            secondHolder.txtContent.setText(data.getContents());
+            secondHolder.txtContent.setText(data.getSecondContents());
 
         }
         return convertView;
