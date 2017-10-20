@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 import kr.go.seoul.airquality.AirQualityButtonTypeA;
 import kr.go.seoul.airquality.AirQualityDetailTypeA;
 
-public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView, APIFragment.GoAirQuiltyAPI {
+public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView, APIFragment.GoAirQuiltyAPI{
 
     @BindView(R.id.airQuality) AirQualityButtonTypeA airQuality;
     @BindView(R.id.tabLayout) TabLayout tab;
@@ -145,6 +145,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
         isAirRan = true;
         startActivity(intent);
-
     }
+
 }

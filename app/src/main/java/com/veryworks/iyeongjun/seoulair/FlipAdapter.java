@@ -54,7 +54,7 @@ public class FlipAdapter extends BaseAdapter {
             firstHolder.firstTxtTitle.setText(data.getTitle());
             firstHolder.firstTxtContents.setText(data.getFirstContents());
             Glide.with(context)
-                    .load(data.getImgURL())
+                    .load(data.getImgSource())
                     .into(firstHolder.imageView);
         } else {
             convertView = inflater.inflate(R.layout.page, parent, false);

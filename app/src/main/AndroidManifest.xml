@@ -35,6 +35,8 @@
             android:name=".ShakeDetectService"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>
