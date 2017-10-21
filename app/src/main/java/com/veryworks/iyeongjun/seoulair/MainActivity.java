@@ -77,8 +77,13 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
             isShaked = false;
         }
         if (isParsed == false){
-            naverNewsParser();
-            isParsed = true;
+            try {
+                Thread.sleep(500);
+                naverNewsParser();
+                isParsed = true;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

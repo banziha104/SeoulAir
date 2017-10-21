@@ -70,6 +70,7 @@ public class WordFragment extends Fragment {
 
     private void setBubble() {
         bubblePicker.setBubbleSize(5);
+        bubblePicker.setCenterImmediately(true);
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {

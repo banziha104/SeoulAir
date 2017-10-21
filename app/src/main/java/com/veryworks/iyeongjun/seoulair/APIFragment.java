@@ -2,31 +2,37 @@ package com.veryworks.iyeongjun.seoulair;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import com.veryworks.iyeongjun.seoulair.domain.Const;
+import android.widget.ImageButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import butterknife.OnTouch;
 import butterknife.Unbinder;
-import kr.go.seoul.airquality.AirQualityButtonTypeA;
-import kr.go.seoul.airquality.AirQualityDetailTypeA;
 
 
 public class APIFragment extends Fragment {
 
     Unbinder unbinder;
     GoAirQuiltyAPI context;
+    @BindView(R.id.APIbutton)
+    ImageButton APIbutton;
+
     public APIFragment() {
         // Required empty public constructor
     }
-    public void setContext(Context context){
+
+    public void setContext(Context context) {
         this.context = (GoAirQuiltyAPI) context;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,9 +41,18 @@ public class APIFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
-    @OnClick(R.id.APIbutton)
-    public void APIButtonClicked(){
-        context.goAirQuilty();
+
+    @OnTouch(R.id.APIbutton)
+    public boolean onClickedCardView(MotionEvent e, View v) {
+        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            APIbutton.setImageResource(R.drawable.touched_screen);
+            APIbutton.setBackgroundColor(Color.argb(0,100,100,100));
+        } else if (e.getAction() == MotionEvent.ACTION_UP) {
+            context.goAirQuilty();
+            APIbutton.setImageResource(R.drawable.touch_screen);
+            APIbutton.setBackgroundColor(Color.argb(0,255,255,255));
+        }
+        return true;
     }
 
     @Override
@@ -46,7 +61,7 @@ public class APIFragment extends Fragment {
         unbinder.unbind();
     }
 
-    interface GoAirQuiltyAPI{
+    interface GoAirQuiltyAPI {
         void goAirQuilty();
     }
 }
