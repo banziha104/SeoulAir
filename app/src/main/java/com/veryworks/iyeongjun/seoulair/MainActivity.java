@@ -68,24 +68,23 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(isAirRan == false) goAirQuilty();
-        else if(isShaked == true){
-            goAirQuilty();
-            isShaked = false;
-        }
-        if (isParsed == false){
-            try {
-                Thread.sleep(500);
-                naverNewsParser();
-                isParsed = true;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if(isAirRan == false) goAirQuilty();
+//        else if(isShaked == true){
+//            goAirQuilty();
+//            isShaked = false;
+//        }
+//        if (isParsed == false){
+//            try {
+//                Thread.sleep(500);
+//                isParsed = true;
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     private void startShakeDetect() {
         Intent intent = new Intent(MainActivity.this, ShakeDetectService.class);
@@ -165,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     @Override
     public void init() {
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
-        goAirQuilty();
+        naverNewsParser();
         setPager();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
         startShakeDetect();

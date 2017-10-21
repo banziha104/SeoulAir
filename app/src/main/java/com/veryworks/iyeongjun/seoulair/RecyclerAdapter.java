@@ -93,7 +93,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
             return true;
         }
-
         public void setPostion(int postion) {
             this.postion = postion;
         }
