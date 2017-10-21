@@ -9,6 +9,10 @@
         android:id="@+id/txtContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TextView" />
+        android:background="?attr/colorButtonNormal"
+        android:lineSpacingExtra="10sp"
+        android:text="TextView"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp" />
 
 </LinearLayout>

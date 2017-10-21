@@ -7,13 +7,22 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.veryworks.iyeongjun.seoulair.domain.Const;
 import com.veryworks.iyeongjun.seoulair.domain.Data;
+import com.veryworks.iyeongjun.seoulair.domain.Items;
 import com.veryworks.iyeongjun.seoulair.domain.NewsData;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by iyeongjun on 2017. 10. 10..
@@ -26,7 +35,7 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
         String clientId = Const.Auth.NAVER_NEWS_API_ID;//애플리케이션 클라이언트 아이디값";
         String clientSecret = Const.Auth.NAVER_NEWS_API_PS;//애플리케이션 클라이언트 시크릿값";
         try {
-            String text = URLEncoder.encode("날씨 대기", "UTF-8");
+            String text = URLEncoder.encode("날씨", "UTF-8");
             String display = 100+"";
             String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+ text
                     +"&display="+display;
@@ -51,7 +60,7 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
             }
             br.close();
             JSONtoPojoConvert(response.toString());
-            Log.d("result",response+"");
+            Log.d("news",response+"");
             context.setView();
         } catch (Exception e) {
             Log.d("elog",e.toString());
@@ -62,12 +71,30 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
     private void JSONtoPojoConvert(String str){
         NewsData.getInstance().setData(new Gson().fromJson(str,Data.class));
         Log.d("result",NewsData.getInstance().getData().getItems().toString());
+        for(Items item : NewsData.getInstance().getData().getItems() ){
+            item.setImgSrc(HTMLImageParser(item.getLink()));
+        }
     }
 
     public void setContext(Context context) {
         this.context = (SetView) context;
     }
 
+    public String HTMLImageParser(String str){
+//        Map<String, String> result = new HashMap<String,String>();
+        String result = Const.MyFlag.NOT_NAVER_IMAGE;
+        if(str.startsWith("http://news.naver.com")) {
+            try {
+                Document document = Jsoup.connect(str).get();
+                Elements elements = document.select(".end_photo_org img");
+                result = elements.attr("src");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("news", result);
+        return result;
+    }
     interface SetView{
         void setView();
     }

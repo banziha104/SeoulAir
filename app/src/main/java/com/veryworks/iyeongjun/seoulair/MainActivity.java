@@ -2,6 +2,7 @@ package com.veryworks.iyeongjun.seoulair;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
 import com.veryworks.iyeongjun.seoulair.domain.Const;
+import com.veryworks.iyeongjun.seoulair.util.PermissionControl;
 
 
 import java.util.ArrayList;
@@ -22,7 +24,10 @@ import butterknife.ButterKnife;
 import kr.go.seoul.airquality.AirQualityButtonTypeA;
 import kr.go.seoul.airquality.AirQualityDetailTypeA;
 
-public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView, APIFragment.GoAirQuiltyAPI{
+import static com.veryworks.iyeongjun.seoulair.util.PermissionControl.checkVersion;
+
+public class MainActivity extends AppCompatActivity implements NaverNewsParser.SetView, APIFragment.GoAirQuiltyAPI, PermissionControl.CallBack
+{
 
     @BindView(R.id.airQuality) AirQualityButtonTypeA airQuality;
     @BindView(R.id.tabLayout) TabLayout tab;
@@ -48,14 +53,15 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
-        setPager();
-        naverNewsParser();
-        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
-        airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
-        startShakeDetect();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkVersion(this);
+        } else {
+            init();
+        }
     }
+
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -147,4 +153,12 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         startActivity(intent);
     }
 
+    @Override
+    public void init() {
+        setPager();
+        naverNewsParser();
+        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
+        airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
+        startShakeDetect();
+    }
 }

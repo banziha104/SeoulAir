@@ -15,6 +15,16 @@ public class Items {
 
     private String link;
 
+    private String imgSrc = null;
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
     public String getPubDate ()
     {
         return pubDate;

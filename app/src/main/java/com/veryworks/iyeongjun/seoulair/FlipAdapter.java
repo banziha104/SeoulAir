@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.veryworks.iyeongjun.seoulair.domain.TermData;
+import com.veryworks.iyeongjun.seoulair.util.CustomBitmapPool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by iyeongjun on 2017. 10. 11..
@@ -25,6 +27,7 @@ public class FlipAdapter extends BaseAdapter {
     public FlipAdapter(Context context, TermData data) {
         this.context = context;
         this.data = data;
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -54,7 +57,7 @@ public class FlipAdapter extends BaseAdapter {
             firstHolder.firstTxtTitle.setText(data.getTitle());
             firstHolder.firstTxtContents.setText(data.getFirstContents());
             Glide.with(context)
-                    .load(data.getImgSource())
+                    .load(data.getImgSource()).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool()))
                     .into(firstHolder.imageView);
         } else {
             convertView = inflater.inflate(R.layout.page, parent, false);

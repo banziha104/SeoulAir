@@ -1,5 +1,13 @@
 package com.veryworks.iyeongjun.seoulair.domain;
 
+import android.util.Log;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+
 /**
  * Created by iyeongjun on 2017. 10. 11..
  */
@@ -25,4 +33,6 @@ public class NewsData {
     public void setData(Data data) {
         this.data = data;
     }
+
 }
+

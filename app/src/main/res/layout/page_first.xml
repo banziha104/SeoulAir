@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorButtonNormal"
+    android:orientation="vertical"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/firstTxtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/big_check"
-        android:layout_weight="1" />
+        android:layout_weight="1.21"
+        app:srcCompat="@drawable/big_check" />
 
     <TextView
         android:id="@+id/firstTxtContents"
         android:layout_width="match_parent"
-        android:layout_height="423dp"
-        android:text="TextView" />
+        android:layout_height="255dp"
+        android:lineSpacingExtra="10sp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
 </LinearLayout>

@@ -15,4 +15,7 @@ public class Const {
         public static final String SCREEN_OFF = "Screen off";
         public static final String BOOT_COMPLETE = "Boot complete";
     }
+    public static class MyFlag{
+        public static final String NOT_NAVER_IMAGE = "not naver image";
+    }
 }

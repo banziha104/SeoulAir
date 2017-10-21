@@ -91,14 +91,15 @@ public class WordFragment extends Fragment {
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
-                Log.d("test",setPosition(pickerItem.getTitle())+"");
+
             }
 
             @Override
             public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
-//                Intent intent = new Intent(getActivity(),DetailActivity.class);
-//                intent.putExtra("pos",setPosition(pickerItem.getTitle()));
-//                startActivity(intent);
+                MainActivity activity = (MainActivity)getActivity();
+                Intent intent = new Intent(activity,DetailActivity.class);
+                intent.putExtra("pos",setPosition(pickerItem.getTitle()));
+                startActivity(intent);
             }
         });
     }

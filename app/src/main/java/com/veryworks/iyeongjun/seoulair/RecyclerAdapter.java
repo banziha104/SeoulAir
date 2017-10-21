@@ -7,18 +7,21 @@ import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.veryworks.iyeongjun.seoulair.domain.Const;
 import com.veryworks.iyeongjun.seoulair.domain.Data;
 import com.veryworks.iyeongjun.seoulair.domain.Items;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.OnTouch;
 
 /**
@@ -28,9 +31,14 @@ import butterknife.OnTouch;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Items[] items;
     Context context;
+    int[] drawableResource = new int[10];
     public RecyclerAdapter(Data data, Context context) {
         items = data.getItems();
         this.context = context;
+        for(int i = 0; i< 10; i++){
+            String resName = "@drawable/default"+i;
+            drawableResource[i] = context.getResources().getIdentifier(resName,"drawable",context.getPackageName());
+        }
     }
 
     @Override
@@ -43,6 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setTitle(items[position].getTitle());
         holder.setPostion(position);
+        holder.setImage(items[position].getImgSrc(),position);
     }
 
     @Override
@@ -52,7 +61,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.txtTitle) TextView itemTxtTitle;
+        @BindView(R.id.cardImgView) ImageView cardImgView;
+        @BindView(R.id.cardview) CardView cardview;
         private int postion;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -62,12 +74,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public void setTitle(String str) {
             itemTxtTitle.setText("  " + Html.fromHtml(str));
         }
-
-        @OnTouch(R.id.txtTitle)
+        public void setImage(String str,int postion){
+            if(str != Const.MyFlag.NOT_NAVER_IMAGE) Glide.with(context).load(str).into(cardImgView);
+            else Glide.with(context).load(drawableResource[postion%10]).into(cardImgView);
+        }
+        @OnTouch({R.id.cardview,R.id.txtTitle})
         public boolean onClickedCardView(MotionEvent e, View v) {
-            if(e.getAction() == MotionEvent.ACTION_DOWN){
+            if (e.getAction() == MotionEvent.ACTION_DOWN) {
                 itemTxtTitle.setTextColor(Color.GRAY);
-            }else if (e.getAction() == MotionEvent.ACTION_UP){
+            } else if (e.getAction() == MotionEvent.ACTION_UP) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(items[postion].getOriginallink()));
                 context.startActivity(intent);
                 itemTxtTitle.setTextColor(Color.BLACK);

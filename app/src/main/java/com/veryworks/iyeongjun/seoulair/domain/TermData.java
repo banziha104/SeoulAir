@@ -11,10 +11,6 @@ public class TermData {
     private String firstContents;
     private String secondContents;
 
-    public TermData() {
-        divideContents(getContents());
-    }
-
     public TermData(String title, int imgSource, String contents) {
         this.title = title;
         this.contents = contents;
@@ -23,8 +19,8 @@ public class TermData {
     }
 
     private void divideContents(String str){
-        setFirstContents(str.substring(0,30));
-        setSecondContents(str.substring(30));
+        setFirstContents(str.substring(0,80));
+        setSecondContents(str.substring(80));
     }
     public String getFirstContents() {
         return firstContents;
