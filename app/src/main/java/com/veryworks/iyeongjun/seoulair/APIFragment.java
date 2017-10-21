@@ -46,11 +46,9 @@ public class APIFragment extends Fragment {
     public boolean onClickedCardView(MotionEvent e, View v) {
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             APIbutton.setImageResource(R.drawable.touched_screen);
-            APIbutton.setBackgroundColor(Color.argb(0,100,100,100));
         } else if (e.getAction() == MotionEvent.ACTION_UP) {
             context.goAirQuilty();
             APIbutton.setImageResource(R.drawable.touch_screen);
-            APIbutton.setBackgroundColor(Color.argb(0,255,255,255));
         }
         return true;
     }
