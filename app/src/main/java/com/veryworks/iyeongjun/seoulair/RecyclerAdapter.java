@@ -51,6 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setTitle(items[position].getTitle());
         holder.setPostion(position);
+        Log.d("tag",items[position].getImgSrc() + "/" + position);
         holder.setImage(items[position].getImgSrc(),position);
     }
 
@@ -75,8 +76,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemTxtTitle.setText("  " + Html.fromHtml(str));
         }
         public void setImage(String str,int postion){
-            if(str != Const.MyFlag.NOT_NAVER_IMAGE) Glide.with(context).load(str).into(cardImgView);
-            else Glide.with(context).load(drawableResource[postion%10]).into(cardImgView);
+            if(str == "" || str == Const.MyFlag.NOT_NAVER_IMAGE) {
+                Glide.with(context).load(drawableResource[postion % 10]).into(cardImgView);
+            }
+            else Glide.with(context).load(str).into(cardImgView);
+
         }
         @OnTouch({R.id.cardview,R.id.txtTitle})
         public boolean onClickedCardView(MotionEvent e, View v) {

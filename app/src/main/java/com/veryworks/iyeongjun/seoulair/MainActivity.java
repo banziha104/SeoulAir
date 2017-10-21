@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     public static boolean isAirRan = false;
     public static boolean isShaked = false;
-
+    public static boolean isParsed = false;
     private int[] tabIcions = {
             R.drawable.term_icon,
             R.drawable.news_icon,
@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         else if(isShaked == true){
             goAirQuilty();
             isShaked = false;
+        }
+        if (isParsed == false){
+            naverNewsParser();
+            isParsed = true;
         }
     }
 
@@ -156,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     @Override
     public void init() {
         setPager();
-        naverNewsParser();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         startShakeDetect();
