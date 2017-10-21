@@ -51,7 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setTitle(items[position].getTitle());
         holder.setPostion(position);
-        Log.d("tag",items[position].getImgSrc() + "/" + position);
+        Log.d("viewhold",items[position].getImgSrc() + "/" + position);
         holder.setImage(items[position].getImgSrc(),position);
     }
 

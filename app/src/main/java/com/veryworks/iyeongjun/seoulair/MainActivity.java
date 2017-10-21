@@ -164,9 +164,10 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     @Override
     public void init() {
+        airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
+        goAirQuilty();
         setPager();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
-        airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         startShakeDetect();
     }
 }
