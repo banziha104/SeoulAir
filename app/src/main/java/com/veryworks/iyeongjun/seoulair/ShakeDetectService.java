@@ -1,5 +1,6 @@
 package com.veryworks.iyeongjun.seoulair;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -41,6 +42,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(intent == null) addDisplayReceiver();
+        startForeground(1,new Notification());
         isServiceRan = true;
         Log.d(TAG,"ServiceOnStartCommand");
         return START_NOT_STICKY;
@@ -90,7 +92,7 @@ public class ShakeDetectService extends Service implements DisplayReceiver.Shake
     }
 
     private void startMainActivity(){
-        if(isShakedDetect = false) {
+        if(isShakedDetect == false) {
             Log.d(TAG, "Shake Detected");
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -69,7 +69,6 @@ public class FlipAdapter extends BaseAdapter {
     }
 
     class FirstHolder {
-
         @BindView(R.id.firstTxtTitle) TextView firstTxtTitle;
         @BindView(R.id.imageView) ImageView imageView;
         @BindView(R.id.firstTxtContents) TextView firstTxtContents;

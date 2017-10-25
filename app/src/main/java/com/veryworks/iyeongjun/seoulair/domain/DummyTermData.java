@@ -19,9 +19,6 @@ public class DummyTermData {
         if (instance ==null){
             instance = new DummyTermData();
         }
-        for (int i = 0 ; i < instance.getData().size();i++){
-            Log.d("Result","pos : "+ instance.getData().get(i).getTitle() + "/ length :" + instance.getData().get(i).getContents().length()+"");
-        }
         return instance;
     }
     public ArrayList<TermData> getData() {

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
 import com.veryworks.iyeongjun.seoulair.domain.Const;
+import com.veryworks.iyeongjun.seoulair.domain.NewsData;
 import com.veryworks.iyeongjun.seoulair.util.PermissionControl;
 
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     NaverNewsParser naverNewsParser;
 
+    public static int CurPos = 1;
     public static boolean isAirRan = false;
     public static boolean isShaked = false;
     public static boolean isParsed = false;
@@ -68,23 +70,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if(isAirRan == false) goAirQuilty();
-//        else if(isShaked == true){
-//            goAirQuilty();
-//            isShaked = false;
-//        }
-//        if (isParsed == false){
-//            try {
-//                Thread.sleep(500);
-//                isParsed = true;
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     private void startShakeDetect() {
         Intent intent = new Intent(MainActivity.this, ShakeDetectService.class);
@@ -164,7 +149,6 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
     @Override
     public void init() {
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
-        naverNewsParser();
         setPager();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
         startShakeDetect();

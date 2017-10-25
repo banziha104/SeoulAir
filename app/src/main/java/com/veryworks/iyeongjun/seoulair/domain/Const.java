@@ -18,4 +18,7 @@ public class Const {
     public static class MyFlag{
         public static final String NOT_NAVER_IMAGE = "not naver image";
     }
+    public static class News{
+        public static final int DISPLAY_DATA = 10;
+    }
 }

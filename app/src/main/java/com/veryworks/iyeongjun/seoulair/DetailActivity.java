@@ -36,13 +36,10 @@ public class DetailActivity extends AppCompatActivity implements FlipView.OnFlip
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
-
-
     @Override
     public void onFlippedToPage(FlipView v, int position, long id) {
 
     }
-
     @Override
     public void onOverFlip(FlipView v, OverFlipMode mode, boolean overFlippingPrevious, float overFlipDistance, float flipDistancePerPage) {
 
