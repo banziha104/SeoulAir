@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     @Override
     public void setView() {
-
+        Log.d("setview","setview");
     }
     public void setPager(){
 
@@ -139,15 +140,16 @@ public class MainActivity extends AppCompatActivity implements NaverNewsParser.S
 
     @Override
     public void goAirQuilty() {
-
         Intent intent = new Intent(this, AirQualityDetailTypeA.class);
         intent.putExtra("OpenAPIKey", Const.Auth.SEOUL_API_KEY);
         isAirRan = true;
         startActivity(intent);
     }
 
+
     @Override
     public void init() {
+        if(NewsData.getInstance().getData()==null)naverNewsParser();
         airQuality.setOpenAPIKey(Const.Auth.SEOUL_API_KEY);
         setPager();
         Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));

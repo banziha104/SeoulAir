@@ -21,4 +21,9 @@ public class Const {
     public static class News{
         public static final int DISPLAY_DATA = 10;
     }
+    public static class EventBus{
+        public static final String ASNC_PAUSE = "event stop";
+        public static final String ASNC_RESUME = "event resume";
+
+    }
 }

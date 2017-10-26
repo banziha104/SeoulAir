@@ -37,7 +37,7 @@ public class NaverNewsParser extends AsyncTask<Void, Void, Void> {
         try {
             String text = URLEncoder.encode("전국 날씨 대기", "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+ text
-                    +"&display=" + 100;
+                    +"&display=" + 40;
 //                    + Const.News.DISPLAY_DATA +"&start=" + MainActivity.CurPos;
             MainActivity.CurPos += Const.News.DISPLAY_DATA;
             URL url = new URL(apiURL);

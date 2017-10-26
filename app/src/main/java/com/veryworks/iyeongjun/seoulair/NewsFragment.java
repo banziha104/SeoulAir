@@ -2,6 +2,8 @@ package com.veryworks.iyeongjun.seoulair;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.veryworks.iyeongjun.seoulair.domain.NewsData;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,22 +53,29 @@ public class NewsFragment extends Fragment {
         unbinder.unbind();
     }
 
-    private void setRecycler(){
-        while (flag){
-            if(NewsData.getInstance().getData() == null){
-                try {
-                    Thread.sleep(500);
-                    Log.d("DATA","sleep");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+    private void setRecycler() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (NewsData.getInstance().getData() != null) {
+                    Log.d("DATA", "getData");
+                    handler.obtainMessage(1).sendToTarget();
+                } else {
+                    Log.d("DATA", "no data");
                 }
-            }else{
-                Log.d("DATA","getData");
-                flag = false;
-                RecyclerAdapter adapter = new RecyclerAdapter(NewsData.getInstance().getData(),getActivity());
-                recycler.setAdapter(adapter);
-                recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
             }
-        }
+        }, 500);
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            RecyclerAdapter adapter = new RecyclerAdapter(NewsData.getInstance().getData(), getActivity());
+            recycler.setAdapter(adapter);
+            recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }
+    };
 }
+
+

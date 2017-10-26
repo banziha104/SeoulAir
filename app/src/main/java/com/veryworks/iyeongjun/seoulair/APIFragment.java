@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.veryworks.iyeongjun.seoulair.domain.Const;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnTouch;
