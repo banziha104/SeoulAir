@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorButtonNormal"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/firstTxtTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:background="#7DCEE5"
+        android:gravity="center_vertical"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -20,13 +22,17 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.21"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0.72"
         app:srcCompat="@drawable/big_check" />
 
     <TextView
         android:id="@+id/firstTxtContents"
         android:layout_width="match_parent"
-        android:layout_height="255dp"
+        android:layout_height="254dp"
         android:lineSpacingExtra="10sp"
         android:text="TextView"
         android:textColor="@android:color/black"

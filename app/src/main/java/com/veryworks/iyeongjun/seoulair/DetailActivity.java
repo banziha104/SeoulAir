@@ -25,7 +25,7 @@ public class DetailActivity extends AppCompatActivity implements FlipView.OnFlip
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "BMDOHYEON_ttf.ttf"));
+        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "font.otf"));
         Intent intent = getIntent();
         curPos = intent.getIntExtra("pos",0);
         adapter = new FlipAdapter(this, DummyTermData.getInstance().getData().get(curPos));
